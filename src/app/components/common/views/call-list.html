@@ -1,0 +1,28 @@
+<div ng-controller="CallListController">
+<table id="call_list" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Time</th>
+        <th>Delete</th>
+        <th>Disabled</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="call in calls">
+            <td>{{call.name}}</td>
+            <td>{{call.phone_number}}</td>
+            <td>{{call.time}}</td>
+            <td>
+                <button class="btn">
+                    Delete
+                </button>
+            </td>
+            <td>
+                <input type="checkbox" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>

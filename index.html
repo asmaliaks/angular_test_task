@@ -10,20 +10,15 @@
     <body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4"
-                 ng-controller="CallListController">
-                <p>{{calls}}</p>
+            <div class="col-lg-6"
+                 ng-include="'src/app/components/common/views/call-list.html'"   >
             </div>
-            <div class="col-lg-8"
-                 ng-controller="AddCallController">
-                {{calls}}
+            <div class="col-lg-6"
+                 ng-include="'src/app/components/common/views/next-call.html'">
             </div>
-            <div class="col-lg-4">
-
-            </div>
-            <div class="col-lg-8"
-                 ng-controller="NextCallController"   >
-                {{nextCall}}
+            <div class="col-lg-6"></div>
+            <div class="col-lg-6"
+                 ng-include="'src/app/components/common/views/add-call.html'">
             </div>
         </div>
     </div>

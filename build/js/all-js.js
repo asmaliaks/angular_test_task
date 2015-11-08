@@ -28902,23 +28902,52 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-//'use strict';
-
-/* App Module */
-
 var app = angular.module('App', [
     'CallListController',
+    'NextCallController',
+    'AddCallController',
+    'CallsService',
 ]);
 
-//'use strict';
 var CallListController = angular.module('CallListController', []);
 
-CallListController.controller('CallListController', ['$scope',
-    function ($scope) {
-        $scope.master = {};
-        $scope.huj = 'pizda';
-        $scope.index = function () {
-        };
+CallListController.controller('CallListController', [
+    '$scope',
+    'CallsService',
+    function ($scope, CallsService) {
+        CallsService.getAllCalls().then(function (data) {
+            $scope.calls = data;
+        });
+    }]);
 
+
+var NextCallController = angular.module('NextCallController', []);
+
+NextCallController.controller('NextCallController', ['$scope',
+    function ($scope) {
+        $scope.nextCall = 'next call';
+    }]);
+var AddCallController = angular.module('AddCallController', []);
+
+AddCallController.controller('AddCallController', ['$scope',
+    function ($scope) {
+        $scope.name = 'add call';
+    }]);
+var CallsService = angular.module('CallsService', []);
+
+CallsService.factory('CallsService', ['$http','$q',
+    function( $http, $q){
+        return {
+            getAllCalls: function () {
+                var deferred = $q.defer();
+                $http.get('/data/calls.json')
+                    .success(function (data) {
+                        deferred.resolve(data);
+                    }).error(function (data) {
+                        deferred.reject(data);
+                    });
+                return deferred.promise;
+            }
+        };
     }]);
 

@@ -15,6 +15,8 @@ gulp.task('scripts', function () {
             'src/app/app.js',
             'src/app/components/common/controllers/CallListController.js',
             'src/app/components/common/controllers/NextCallController.js',
+            'src/app/components/common/controllers/AddCallController.js',
+            'src/app/components/common/services/CallsService.js',
         ])
         .pipe(concat('all-js.js'))
         //.pipe(gulpif(isProduction, minify()))
